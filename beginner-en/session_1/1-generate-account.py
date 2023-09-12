@@ -8,7 +8,7 @@
 
 def main():
     # use new_account() method to generate a new account
-    print("hi")
+    print("hi2")
     # print the address of the account object
 
 main()
