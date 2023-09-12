@@ -6,9 +6,14 @@
 # 6. add imports
 # 7. add code below each comment
 
+import algokit_utils as algokit
+
 def main():
     # use new_account() method to generate a new account
-    print("hi2")
+    # it uses randomness to create account objects with address, public/prclivate keys, etc.
+    my_account = algokit.Account.new_account()
+
     # print the address of the account object
+    print("address: ",my_account.address)
 
 main()
