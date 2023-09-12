@@ -105,10 +105,10 @@ def main():
     txid = algod.send_transaction(signed_txn)
     print("8888888888888888888888888888888888888888")
     print("sent ASA in txn: ",txid)
-    # view other_account to confirm assest transfer,it should have 01 amount after transfer
+    # view other_account to confirm assest transfer,it should have 1 asset amount after transfer
     print("999999999999999999999999999999999999999999")
     print(algod.account_info(other_account.address))
-    # view other_account to confirm assest transfer, it should have 0 amount after transfer
+    # view other_account to confirm assest transfer, it should have 0 asset amount after transfer
     print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     print(algod.account_info(my_account.address))
 
