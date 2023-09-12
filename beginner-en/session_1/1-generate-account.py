@@ -10,4 +10,4 @@ def main():
     # use new_account() method to generate a new account
     # print the address of the account object
 
-main()
+ main()
