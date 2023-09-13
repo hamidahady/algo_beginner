@@ -120,7 +120,7 @@ def main():
         receiver = my_account.address,
         amt = 1_000_000
     )
-    # send asset from my_account to other_account
+    # send asset from my_account to other_account (this was unsigned transaction in previous sections)
     asset_xfer_txn = algosdk.transaction.AssetTransferTxn(
         sender=my_account.address,
         sp= algod.suggested_params(),
