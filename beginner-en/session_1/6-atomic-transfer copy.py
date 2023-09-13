@@ -95,41 +95,41 @@ def main():
     # groupTxn = [txn1, txn2]
     # both will complete atomiclly, else none will be confirmed
     
-    # send 1 ALGO from other_account to my_account (this was unsigned transaction in previous sections)
+    # send 1 ALGO from other_account to my_account
     payment_txn = algosdk.transaction.PaymentTxn(
-        sender = other_account.address,
-        sp = algod.suggested_params(),
-        receiver = my_account.address,
-        amt = 1_000_000
+        sender=other_account.address,
+        sp=algod.suggested_params(),
+        receiver=my_account.address,
+        amt=1_000_000
     )
-    # send asset from my_account to other_account (this was unsigned transaction in previous sections)
+
+    # send asset from my_account to other_account
     asset_xfer_txn = algosdk.transaction.AssetTransferTxn(
         sender=my_account.address,
-        sp= algod.suggested_params(),
-        receiver= other_account.address,
+        sp=algod.suggested_params(),
+        receiver=other_account.address,
         amt=1,
-        index= assetID
+        index=assetID,
     )
+
     # group transactions
-    group_id = algosdk.transaction.calculate_group_id([payment_txn,asset_xfer_txn])
-    payment_txn.group = group_id
-    asset_xfer_txn.group = group_id
-    print("ccccccccccccccccccccccccccccccccccccccccccccccc")
+    group_id = algosdk.transaction.calculate_group_id([payment_txn, asset_xfer_txn])
+    payment_txn.group =  group_id
+    asset_xfer_txn.group =  group_id
+
     # sign transactions
-    stxn1 = payment_txn.sign(other_account.private_key)
-    stxn2 = asset_xfer_txn.sign(my_account.private_key)
+    stxn_1 = payment_txn.sign(other_account.private_key)    
+    stxn_2 = asset_xfer_txn.sign(my_account.private_key)
+
     # assemble transaction group
-    signed_group = [stxn1,stxn2]
+    signed_group = [stxn_1, stxn_2]
 
-    #submit/send atomic transaction group to the network
-    print("=======================submit/send atomic transfer========================")
+    #submit atomic transaction group
     txid = algod.send_transactions(signed_group)
-
     print("Successfully sent transaction with txID: {}".format(txid))
-    
+
     # view accounts to confirm atomic transfer
-    pprint("=====================my_account infor=================================")
     pprint(algod.account_info(my_account.address))
-    pprint("=====================other_account infor=================================")
     pprint(algod.account_info(other_account.address))
+
 main()
